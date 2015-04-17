@@ -26,15 +26,20 @@ public class Order {
 
 	public void submit() {
 		requireState(State.CREATED);
-
+		
 		orderState = State.SUBMITTED;
-		subbmitionDate = new DateTime();
+		//subbmitionDate = new DateTime();
+		//CHANGED FOR TESTING!
+		FakeTimeSoruce fts = new FakeTimeSoruce();
+		subbmitionDate = new DateTime(fts.currentTimeMillis());
+		//System.out.println(fts.currentTimeMillis());
 
 	}
 
 	public void confirm() {
 		requireState(State.SUBMITTED);
 		int hoursElapsedAfterSubmittion = Hours.hoursBetween(subbmitionDate, new DateTime()).getHours();
+//		/System.out.println(Hours.hoursBetween(subbmitionDate, new DateTime()).getHours());
 		if(hoursElapsedAfterSubmittion > VALID_PERIOD_HOURS){
 			orderState = State.CANCELLED;
 			throw new OrderExpiredException();
