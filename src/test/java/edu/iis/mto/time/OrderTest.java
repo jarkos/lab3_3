@@ -7,8 +7,10 @@ import org.junit.Test;
 public class OrderTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void confirmTest_give25HoursDelayInSubmit_shouldThrowOrderExpiredException() 
+	{
+		Order order = new Order();
+		order.submit();
+		order.confirm();
 	}
-
 }
