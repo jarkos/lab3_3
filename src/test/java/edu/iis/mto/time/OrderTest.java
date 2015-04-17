@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class OrderTest {
 
-	@Test
+	@Test(expected = OrderExpiredException.class)
 	public void confirmTest_give25HoursDelayInSubmit_shouldThrowOrderExpiredException() 
 	{
 		Order order = new Order();
